@@ -1,4 +1,4 @@
-package com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.Controllers;
+package com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.controllers;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.UserDTO;
-import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.Models.Users;
-import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.Services.UserService;
+import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.dtos.UserDTO;
+import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.models.Users;
+import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.services.UserService;
 
 @RestController
 @RequestMapping("/users")

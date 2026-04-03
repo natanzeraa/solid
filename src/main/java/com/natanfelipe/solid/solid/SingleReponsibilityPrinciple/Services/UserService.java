@@ -1,12 +1,12 @@
-package com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.Services;
+package com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.services;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.UserDTO;
-import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.Models.Users;
-import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.Repositories.UserRepository;
+import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.dtos.UserDTO;
+import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.models.Users;
+import com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.repositories.UserRepository;
 
 @Service
 public class UserService {

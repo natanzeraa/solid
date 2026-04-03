@@ -1,4 +1,4 @@
-package com.natanfelipe.solid.solid.SingleReponsibilityPrinciple;
+package com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.dtos;
 
 public class UserDTO {
 

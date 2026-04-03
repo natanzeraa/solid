@@ -1,4 +1,4 @@
-package com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.Models;
+package com.natanfelipe.solid.solid.SingleReponsibilityPrinciple.models;
 
 import java.time.LocalDateTime;
 
