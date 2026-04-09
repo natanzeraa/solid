@@ -37,7 +37,7 @@ public class EmailService implements IMail {
         final MailtrapMail mail = MailtrapMail.builder()
             .from(new Address(SENDER))
             .to(List.of(new Address(email.getSendTo())))
-            .subject("Hello from Java SRP (Single Responsibility Principle)!")
+            .subject("Hello, " + email.getSendTo() + " from Java SRP (Single Responsibility Principle)!")
             .text("This email was sent using Mailtrap's Java SDK.")
             .build();
 
