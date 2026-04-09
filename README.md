@@ -80,5 +80,70 @@ With the project running (for example using `mvn spring-boot:run` or via your ID
 Beyond the database infrastructure, the repository contains examples related to the **Single Responsibility Principle** within the package:
 
 - `src/main/java/com/natanfelipe/solid/solid/SingleReponsibilityPrinciple`
-
 As the project evolves, more SOLID principles will be implemented and documented here, always keeping the same Autonomous Database connection setup on OCI so that the examples stay close to real-world scenarios.
+
+## REST API: Users resource
+
+The main business example in the project is a simple **Users** CRUD, exposed under the `/users` path:
+
+- `GET /users` – returns the list of users.  
+- `GET /users/{id}` – returns the details of a single user.  
+- `POST /users` – creates a new user.  
+- `PUT /users/{id}` – updates an existing user.  
+- `DELETE /users/{id}` – deletes a user.
+
+The payload used in `POST /users` and `PUT /users/{id}` follows the `UserDTO` structure:
+
+```json
+{
+  "firstName": "Ada",
+  "lastName": "Lovelace",
+  "email": "ada@example.com",
+  "phone": "+55 11 99999-0000",
+  "pix": "ada-pix-key",
+  "crc": "123456"
+}
+```
+
+Internally, the endpoint delegates all business logic to `UserService`, which:
+
+- maps the DTO to the `Users` JPA entity;  
+- persists the entity through `UserRepository`;  
+- publishes a `UserCreatedEvent` after a successful creation.
+
+## Single Responsibility in practice: events and e‑mails
+
+The **Single Responsibility Principle** is applied around the user creation flow by splitting responsibilities across small, focused components:
+
+- `UserController` – exposes the HTTP endpoints and delegates to the service layer.  
+- `UserService` – contains the application logic to manage users and publishes a `UserCreatedEvent` when a new user is created.  
+- `UserCreatedEvent` – value object that carries the created `Users` instance.  
+- `UserMailListener` – listens to `UserCreatedEvent` and is responsible for preparing the `Email` model and invoking the mail service.  
+- `EmailService` (through the `IMail` interface) – encapsulates the integration with **Mailtrap** and actually sends the e‑mail.
+
+With this design:
+
+- user persistence does **not** know anything about e‑mail infrastructure;  
+- e‑mail sending does **not** know about persistence or HTTP;  
+- each class has one clear reason to change (respecting SRP).
+
+## Mailtrap configuration (e‑mail sandbox)
+
+To send e‑mails when a new user is created, the project uses **Mailtrap** as an e‑mail sandbox.  
+The `EmailService` reads configuration from `application.properties`:
+
+- `mailtrap.token=${MAILTRAP_TOKEN}`  
+- `mailtrap.sender=${MAILTRAP_SENDER}`
+
+Before starting the application, configure the following environment variables:
+
+```bash
+export MAILTRAP_TOKEN="your-mailtrap-api-token"
+export MAILTRAP_SENDER="from@example.com"
+```
+
+These values are used to build the Mailtrap Java client and send an e‑mail with a personalized subject like:
+
+> `Hello, user@example.com from Java SRP (Single Responsibility Principle)!`
+
+This flow, triggered by user creation and decoupled via events, complements the database setup and demonstrates how SOLID principles can be applied in a realistic, end‑to‑end scenario.
