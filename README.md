@@ -80,6 +80,8 @@ With the project running (for example using `mvn spring-boot:run` or via your ID
 Beyond the database infrastructure, the repository contains examples related to the **Single Responsibility Principle** within the package:
 
 - `src/main/java/com/natanfelipe/solid/solid/SingleReponsibilityPrinciple`
+
+For a SRP-focused guide (diagram + flow walkthrough), see: `docs/SRP.md`.
 As the project evolves, more SOLID principles will be implemented and documented here, always keeping the same Autonomous Database connection setup on OCI so that the examples stay close to real-world scenarios.
 
 ## REST API: Users resource
@@ -126,6 +128,8 @@ With this design:
 - user persistence does **not** know anything about e‑mail infrastructure;  
 - e‑mail sending does **not** know about persistence or HTTP;  
 - each class has one clear reason to change (respecting SRP).
+
+![SRP example architecture](docs/architecture.png)
 
 ## Mailtrap configuration (e‑mail sandbox)
 
