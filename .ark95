@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "projectName": "solid",
+  "diagramId": "aea57ce2-3d42-4f3c-9e74-ccfa20fc7874",
+  "diagramUrl": "https://ark95.io/dashboard?diagram=aea57ce2-3d42-4f3c-9e74-ccfa20fc7874",
+  "generatedAt": "2026-04-16T01:59:50.243Z",
+  "nodes": [
+    {
+      "id": "client-application",
+      "label": "Client Application",
+      "type": "client",
+      "tech": "Web/Mobile/CLI",
+      "file_origin": "N/A (Implicit)"
+    },
+    {
+      "id": "user-management-service",
+      "label": "User Management Service",
+      "type": "service",
+      "tech": "Spring Boot/Java",
+      "file_origin": "vscode-workspace/src/main/java/com/natanfelipe/solid/solid/SolidApplication.java"
+    },
+    {
+      "id": "relational-database",
+      "label": "Relational Database",
+      "type": "database",
+      "tech": "JPA/SQL",
+      "file_origin": "vscode-workspace/src/main/resources/db/migration/V1__create_table_user.sql"
+    },
+    {
+      "id": "mailtrap-api",
+      "label": "Mailtrap API",
+      "type": "external",
+      "tech": "Mailtrap SDK",
+      "file_origin": "vscode-workspace/src/main/java/com/natanfelipe/solid/solid/SingleReponsibilityPrinciple/services/EmailService.java"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Client Application",
+      "target": "User Management Service",
+      "subtype": "crud",
+      "protocol": "HTTP"
+    },
+    {
+      "source": "User Management Service",
+      "target": "Relational Database",
+      "subtype": "operations",
+      "protocol": "TCP"
+    },
+    {
+      "source": "User Management Service",
+      "target": "Mailtrap API",
+      "subtype": "http_post",
+      "protocol": "HTTP"
+    }
+  ]
+}

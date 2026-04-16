@@ -78,6 +78,8 @@ O `TestController` abre uma conexão via `DataSource` configurado pelo Spring Bo
 Além da infraestrutura de banco pronta, o repositório contém exemplos relacionados ao princípio de **Responsabilidade Única (Single Responsibility Principle)** dentro do pacote:
 
 - `src/main/java/com/natanfelipe/solid/solid/SingleReponsibilityPrinciple`
+
+Para um guia focado apenas no SRP (com diagrama e walkthrough do fluxo), veja: `docs/SRP.md`.
 Ao longo da evolução do projeto, outros princípios SOLID serão implementados e documentados aqui, sempre mantendo a mesma base de conexão com o Autonomous Database na OCI para sustentar os exemplos mais próximos de cenários reais.
 
 ## API REST: recurso de usuários
@@ -124,6 +126,8 @@ Com esse desenho:
 - a persistência de usuários **não** conhece detalhes da infraestrutura de e‑mail;  
 - o envio de e‑mail **não** conhece detalhes de persistência ou HTTP;  
 - cada classe tem um motivo claro para mudar (respeitando SRP).
+
+![Arquitetura do exemplo SRP](docs/architecture.png)
 
 ## Configuração do Mailtrap (sandbox de e‑mail)
 
